@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Passenger {
     @NotBlank @Size(max=40)
-    private String passengerId;
+    private String passengerID;
     @NotBlank @Size(max=60)
     private String name;
     @NotBlank @Email
