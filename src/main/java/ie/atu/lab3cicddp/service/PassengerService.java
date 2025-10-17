@@ -44,4 +44,12 @@ public class PassengerService {
         store.add(p);
         return Optional.of(p);
     }
+
+    public Optional<Passenger> delete(String id) {
+        if (findById(id).isPresent()) {
+            store.remove(findById(id).get());
+            return Optional.of(findById(id).get());
+        }
+        return Optional.empty();
+    }
 }
