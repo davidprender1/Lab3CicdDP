@@ -47,10 +47,28 @@ public class PassengerController {
                 .body(created);
     }
 
-    @GetMapping("/update ")
-    public String greetByName(@PathVariable String name)
-    {
-        return "Hello " + name + "!";
+    @PutMapping("/updateName")
+    public ResponseEntity<Passenger> updateName(@Valid @RequestBody Passenger p) {
+        Optional<Passenger> maybe = service.findById(p.getPassengerID());
+        if (maybe.isPresent()) {
+            Passenger updated = maybe.get();
+            updated.setName(p.getName());
+            updated.setEmail(p.getEmail());
+            return ResponseEntity.ok(updated);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/ID")
+    public ResponseEntity<?> delete(@Valid @RequestBody Passenger p) {
+        Optional<Passenger> maybe = service.findById(p.getPassengerID());
+        if (maybe.isPresent()) {
+            Passenger updated = maybe.get();
+            return ResponseEntity.ok().build();
+        }
+        else  {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
 
