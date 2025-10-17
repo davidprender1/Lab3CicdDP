@@ -36,4 +36,12 @@ public class PassengerService {
         store.add(p);
         return p;
     }
+
+    public Optional<Passenger> update(Passenger p) {
+        if (findById(p.getPassengerID()).isPresent()) {
+            throw new IllegalArgumentException("PassengerId with ID "+ p.getPassengerID() +"already exists");
+        }
+        store.add(p);
+        return Optional.of(p);
+    }
 }

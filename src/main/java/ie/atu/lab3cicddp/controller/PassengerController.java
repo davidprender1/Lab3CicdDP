@@ -46,5 +46,11 @@ public class PassengerController {
                 .created(URI.create("/api/passengers/" + created.getPassengerID()))
                 .body(created);
     }
+
+    @GetMapping("/update ")
+    public String greetByName(@PathVariable String name)
+    {
+        return "Hello " + name + "!";
+    }
 }
 
